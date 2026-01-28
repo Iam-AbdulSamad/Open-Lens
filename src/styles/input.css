@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@theme{
+    --color-bg-primary: #151024;
+    --color-bg-secondary: #0B0614;
+    --color-text-primary: #FFFFFF;
+    --color-text-muted: #B9B5C9;
+    --color-accent-primary: #8B5CF6;
+    --color-accent-hover: #9F7AEA;
+    --color-btn-primary: #8B5CF6;
+    --color-btn-hover: #9F7AEA;
+    --color-input-bg: #1C1533;
+    --color-input-border: #8B5CF6;
+    --font-alice: "Alice", serif;
+    --font-press: "Press Start 2P", serif;
+    --font-bitcount: "Bitcount Prop Single", serif;
+}
