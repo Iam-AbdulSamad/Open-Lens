@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenLens</title>
+    <link href="src/styles/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+</head>
+
+<body class="bg-bg-primary text-text-primary">
+    <header class="bg-accent-primary flex justify-between items-center px-6 py-3">
+        <img src="src/assets/icon.png" alt="logo" class="h-12">
+        <nav class="flex gap-10 text-lg">
+            <a class="hover:text-bg-primary transition" href="#Home">Home</a>
+            <a class="hover:text-bg-primary transition" href="#Features">Features</a>
+            <a class="hover:text-bg-primary transition" href="#Works">How it Works</a>
+            <a class="hover:text-bg-primary transition" href="#Contact">Contact</a>
+        </nav>
+        <div class="buttons flex gap-4 text-lg">
+            <a href="src/pages/login.html"><button class="border-2 border-accent-hover px-4 py-1 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition"> Login</button></a>
+            <a href="src/pages/signup.html"><button class="border-2 border-accent-hover px-4 py-1 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Sign Up</button></a>
+        </div>
+    </header>
+    <main>
+        <section id="Home" class="hero-section h-[90vh] flex flex-col justify-center items-center text-center">
+            <p class="font-press text-9xl font-bold">OPENLENS</p>
+            <p class="text-2xl text-text-muted max-w-5xl my-8">
+                OpenLens helps students and developers discover beginner-friendly GitHub repositories
+                by analyzing project activity, issues, and documentation.
+            </p>
+            <div class="flex gap-6">
+                <button class="border-2 border-accent-hover px-6 py-3 rounded-full hover:bg-btn-hover hover:scale-105 transition">Try Now</button>
+                <button class="border-2 border-accent-hover px-6 py-3 rounded-full hover:bg-btn-hover hover:scale-105 transition">Learn More</button>
+            </div>
+        </section>
+        <section class="about-section bg-accent-primary p-12 mb-10">
+            <p class="font-alice text-7xl text-center mb-8">What is OpenLens?</p>
+            <div class="section-content flex justify-between items-center gap-10">
+                <p class="text-2xl max-w-4xl">
+                    OpenLens is a web-based analytical platform designed to assist students and aspiring developers
+                    in identifying suitable open-source repositories for contribution. It evaluates repository activity,
+                    issue complexity, documentation quality, and contributor engagement to determine contribution
+                    readiness.
+                </p>
+                <img src="src/assets/openlens.png" class="h-60" alt="illustration">
+            </div>
+        </section>
+        <section id="Features" class="features-section p-12 mb-10">
+            <p class="font-alice text-7xl text-center mb-10">Features</p>
+            <div class="cards grid grid-cols-2 gap-10 text-2xl">
+                <div
+                    class="bg-accent-primary p-8 rounded-3xl hover:scale-105 hover:bg-accent-hover transition shadow-lg">
+                    <p class="font-bold mb-2">Contribution Readiness Scoring</p>
+                    <p>Automatically evaluates repositories for suitability.</p>
+                </div>
+                <div
+                    class="bg-accent-primary p-8 rounded-3xl hover:scale-105 hover:bg-accent-hover transition shadow-lg">
+                    <p class="font-bold mb-2">Beginner-Friendly Discovery</p>
+                    <p>Find repositories aligned with your skills.</p>
+                </div>
+                <div
+                    class="bg-accent-primary p-8 rounded-3xl hover:scale-105 hover:bg-accent-hover transition shadow-lg">
+                    <p class="font-bold mb-2">Issue & Activity Analysis</p>
+                    <p>Analyzes issues and contributor activity.</p>
+                </div>
+                <div
+                    class="bg-accent-primary p-8 rounded-3xl hover:scale-105 hover:bg-accent-hover transition shadow-lg">
+                    <p class="font-bold mb-2">API-Driven Insights</p>
+                    <p>Uses GitHub APIs for real-time analytics.</p>
+                </div>
+            </div>
+        </section>
+        <section id="Works" class="work-section p-12 mb-10">
+            <p class="font-alice text-7xl text-center mb-10">How it Works</p>
+            <div class="steps flex flex-col items-center gap-6 text-2xl">
+                <div class="bg-accent-primary p-6 w-3/4 rounded-xl">Enter Repository or Keywords</div>
+                <div class="bg-accent-primary p-6 w-3/4 rounded-xl">Repository Data Collection</div>
+                <div class="bg-accent-primary p-6 w-3/4 rounded-xl">Analysis & Scoring</div>
+                <div class="bg-accent-primary p-6 w-3/4 rounded-xl">Insights & Recommendations</div>
+            </div>
+        </section>
+        <section class="demo-section bg-accent-primary p-12 mb-10">
+            <p class="font-alice text-7xl text-center mb-8">See OpenLens in Action</p>
+            <video src="src/assets/demovideo.mp4" controls class="w-3/4 mx-auto rounded-3xl"></video>
+        </section>
+        <section class="call-to-action-section flex flex-col items-center mb-16">
+            <p class="text-2xl font-bold mb-6">Ready to explore open-source with confidence?</p>
+            <button class="border-2 border-accent-hover px-6 py-3 rounded-full hover:bg-btn-hover hover:text-bg-primary hover:scale-105 transition">Try OpenLens Now</button>
+        </section>
+    </main>
+    <footer class="bg-bg-secondary text-text-primary py-12">
+        <section id="Contact" class="max-w-7xl mx-auto grid grid-cols-3 gap-10 px-10 text-2xl">
+            <div class="info">
+                <p class="font-bold">OpenLens</p>
+                <p class="text-text-muted">An open-source academic project.</p>
+            </div>
+            <div class="links">
+                <p class="font-bold mb-2">Links</p>
+                <a class="block hover:text-accent-hover transition" target="main" href="https://github.com/Iam-AbdulSamad/Open-Lens">GitHub Repository</a>
+                <a class="block hover:text-accent-hover transition" target="main" href="mailto:mohdabdulsamad2000@gmail.com">Contact</a>
+            </div>
+            <div>
+                <p class="copy-right font-bold">© 2025 OpenLens</p>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
