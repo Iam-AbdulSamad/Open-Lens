@@ -9,43 +9,73 @@
         rel="stylesheet">
 </head>
 <body class="bg-bg-primary text-text-primary w-full h-screen flex items-center justify-center text-2xl">
-    <section class="w-[25%] flex flex-col items-center justify-center">
+    <section id="content" class="w-[25%] flex flex-col items-center justify-center">
         <img src="../assets/icon.png" class="h-22 mb-6" alt="">
         <div class="google_OAuth flex flex-col w-full mb-10 items-center">
             <p class="text-center mb-4 text-text-muted">Quick signup using your Google account </p>
-            <button
-                class="font-bitcount border-2 w-3/4 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Continue
-                with Google</button>
+            <button class="font-bitcount border-2 w-3/4 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Continue with Google</button>
         </div>
         <p class="font-bitcount mb-6 text-md text-text-muted">OR</p>
-        <form class="w-full flex flex-col items-center">
-            <input
-                class="w-full border-b border-gray-400 py-2 mb-6 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition"
-                type="text" placeholder="Username">
-            <div class="w-full relative mb-6">
-                <input id="password"
-                    class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition"
-                    type="password" placeholder="Password">
+        <form id="form" class="w-full flex flex-col items-center">
+            <input id="mail" class="w-full border-b border-gray-400 py-2 mb-6 text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="email" placeholder="Enter your Email">
+            <div class="w-full mb-6">
+                <input id="password" class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="password" placeholder="Create Password">
                 <span class="absolute right-2 top-3 cursor-pointer">
                     <i class="fi fi-br-eye"></i>
                 </span>
             </div>
-            <div class="w-full relative mb-6">
-                <input id="confirmPassword"
-                    class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition"
-                    type="password" placeholder="Confirm Password">
+            <div class="w-full mb-6">
+                <input id="confirmPassword" class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="password" placeholder="Confirm Password">
                 <span class="absolute right-2 top-3 cursor-pointer">
                     <i class="fi fi-br-eye"></i>
                 </span>
             </div>
-            <button
-                class="font-bitcount border-2 mt-4 w-1/2 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Sign
-                Up</button>
+            <button type="submit" class="font-bitcount border-2 mt-4 w-1/2 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Sign Up</button>
         </form>
-        <p class="text-sm mt-6 text-text-muted">Already have an account? <a class="hover:text-accent-hover"
-                href="../pages/login.html">Login</a></p>
+        <p class="text-sm mt-6 text-text-muted">Already have an account? <a class="hover:text-accent-hover" href="../pages/login.html">Login</a></p>
     </section>
+    <div id = "confirmation_message" class="bg-fuchsia-50 h-15 w-1/4 rounded-md font-bitcount text-black text-sm py-5 px-3 text-center fixed bottom-5 right-5 z-1 hidden">
+        <p>✅ Your Account has succesfully Created! <a href="../pages/login.html" class="text-amber-700">Login Here</a></p>
+    </div>
     <script>
+        const Form_Element = document.querySelector('#form')
+        const Password_Element = document.querySelector('#password')
+        const Confirm_Password_Element = document.querySelector('#confirmPassword')
+        const Mail_Element = document.querySelector('#mail')
+        const Confirmation_Message_Element = document.querySelector('#confirmation_message')
+        const user_data = {
+            mail : "",
+            password : ""
+        }
+        
+        function is_vaild_password(password){
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/
+            return regex.test(password)
+        }
+        
+        Form_Element.addEventListener('submit', (event)=>{
+            event.preventDefault();
+
+            if(!is_vaild_password(Password_Element.value)){
+                alert("Invalid password! Minimum 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special.")
+                return
+            }
+            else if(Password_Element.value != Confirm_Password_Element.value){
+                alert("Passwords do not match!")
+                return
+            }
+            user_data.mail = Mail_Element.value
+            user_data.password = Password_Element.value
+
+            // document.querySelector('#content').classList.add('blur-md')
+            Confirmation_Message_Element.classList.remove('hidden')
+            setTimeout(()=>{
+                // document.querySelector('#content').classList.remove('blur-md')
+                Confirmation_Message_Element.classList.add('hidden')
+                window.location.href = "Login.html";
+            },3000);
+            
+        })
     </script>
 </body>
 </html>

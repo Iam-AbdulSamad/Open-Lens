@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <title>Login Page</title>
@@ -9,36 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Alice&family=Bitcount+Prop+Single:wght@100..900&display=swap"
         rel="stylesheet">
 </head>
-
 <body class="bg-bg-primary text-text-primary w-full h-screen flex items-center justify-center text-2xl">
     <section class="w-[25%] flex flex-col items-center justify-center">
         <img src="../assets/icon.png" class="h-22 mb-6" alt="">
         <div class="google_OAuth flex flex-col w-full mb-10 items-center">
             <p class="text-center mb-4 text-text-muted">Quick Login using your Google account </p>
-            <button
-                class="font-bitcount border-2 w-3/4 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Continue
-                with Google</button>
+            <button class="font-bitcount border-2 w-3/4 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Continue with Google</button>
         </div>
         <p class="font-bitcount mb-6 text-md text-text-muted">OR</p>
         <form class="w-full flex flex-col items-center">
-            <input
-                class="w-full border-b border-gray-400 py-2 mb-6 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition"
-                type="email" placeholder="Enter your Email">
-            <div class="w-full relative mb-6">
-                <input id="password"
-                    class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition"
-                    type="password" placeholder="Enter your Password">
+            <input id="mail" class="w-full border-b border-gray-400 py-2 mb-6 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="email" placeholder="Enter your Email">
+            <div class="w-full mb-6">
+                <input id="password" class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="password" placeholder="Enter your Password">
                 <span class="absolute right-2 top-3 cursor-pointer">
                     <i class="fi fi-br-eye"></i>
                 </span>
             </div>
-            <button
-                class="font-bitcount border-2 mt-4 w-1/2 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Login</button>
+            <button type="submit" class="font-bitcount border-2 mt-4 w-1/2 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Login</button>
         </form>
         <p class="text-sm mt-6 text-text-muted">Don't have an account? <a class="hover:text-accent-hover" href="../pages/signup.html">Sign up</a></p>
     </section>
     <script>
     </script>
 </body>
-
 </html>
