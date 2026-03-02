@@ -8,24 +8,26 @@
     <link href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alice&family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<body class="bg-bg-primary text-text-primary w-full h-screen flex items-center justify-center text-2xl">
+<body class="bg-bg-primary text-text-primary w-full h-screen flex items-center justify-center">
     <section id="content" class="w-[25%] flex flex-col items-center justify-center">
         <img src="../assets/icon.png" class="h-22 mb-6" alt="">
-        <div class="google_OAuth flex flex-col w-full mb-10 items-center">
+        <div class="google_OAuth flex flex-col w-full mb-10 items-center text-2xl">
             <p class="text-center mb-4 text-text-muted">Quick signup using your Google account </p>
             <button class="font-bitcount border-2 w-3/4 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Continue with Google</button>
         </div>
         <p class="font-bitcount mb-6 text-md text-text-muted">OR</p>
-        <form id="form" class="w-full flex flex-col items-center">
+        <form id="form" class="w-full flex flex-col items-center text-lg">
             <input id="mail" class="w-full border-b border-gray-400 py-2 mb-6 text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="email" placeholder="Enter your Email">
+            <p id="email_error" class="text-red-400 hidden">Enter a valid email Address</p>
             <div class="w-full mb-6 flex items-center">
                 <input id="password" class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="password" placeholder="Create Password">
                 <span onclick="convert_password_text()"><i class="fi fi-ss-eye"></i></span>
             </div>
-            <div class="w-full mb-6 flex items-center">
+            <p id="password_error" class="text-red-400 hidden">Invalid password! Min 6 characters required</p>
+            <!-- <div class="w-full mb-6 flex items-center">
                 <input id="confirmPassword" class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="password" placeholder="Confirm Password">
                 <span onclick="convert_password_text()"><i class=" fi fi-ss-eye"></i></span>
-            </div>
+            </div> -->
             <button type="submit" class="font-bitcount border-2 mt-4 w-1/2 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Sign Up</button>
         </form>
         <p class="text-sm mt-6 text-text-muted">Already have an account? <a class="hover:text-accent-hover" href="../pages/login.html">Login</a></p>
@@ -37,8 +39,10 @@
         const Form_Element = document.querySelector('#form')
         const Mail_Element = document.querySelector('#mail')
         const Password_Element = document.querySelector('#password')
-        const Confirm_Password_Element = document.querySelector('#confirmPassword')
+        // const Confirm_Password_Element = document.querySelector('#confirmPassword')
         const Confirmation_Message_Element = document.querySelector('#confirmation_message')
+        const email_error_element = document.querySelector('#email_error')
+        const password_error_element = document.querySelector('#password_error')
         const eyeIcon = document.querySelector('i');
 
         const user_data = {
@@ -52,49 +56,43 @@
         }
 
         function is_vaild_password(password){
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/
+            const regex = /^.{6,}$/
             return regex.test(password)
         }
-        
 
         Form_Element.addEventListener('submit', (event)=>{
             event.preventDefault();
             
             if(!is_vaild_password(Password_Element.value)){
-                alert("Invalid password! Minimum 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special.")
-                return
-            }
-            else if(Password_Element.value != Confirm_Password_Element.value){
-                alert("Passwords do not match!")
+                password_error_element.classList.toggle('hidden')
                 return
             }
             else if(!is_valid_mail(Mail_Element.value)){
-                alert("Enter a valid email address")
+                email_error_element.classList.toggle('hidden')
                 return
             }
             user_data.mail = Mail_Element.value
             user_data.password = Password_Element.value
             
-            // document.querySelector('#content').classList.add('blur-md')
+            document.querySelector('#content').classList.add('blur-md')
             Confirmation_Message_Element.classList.remove('hidden')
             setTimeout(()=>{
-                // document.querySelector('#content').classList.remove('blur-md')
+                document.querySelector('#content').classList.remove('blur-md')
                 Confirmation_Message_Element.classList.add('hidden')
                 window.location.href = "Login.html";
             },3000);
         });
-
-        // function convert_password_text() {
-        //     const cliked_Element = event.target;
-        //     if (clickedElement.parentElement.querySelector('input').type == "password") {
-        //         clickedElement.parentElement.querySelector('input').type = "text";
-        //         eyeIcon.classList.replace("fi-ss-eye", "fi-ss-eye-crossed");
-        //     }
-        //     else {
-        //         clickedElement.parentElement.querySelector('input').type = "password";
-        //         eyeIcon.classList.replace("fi-ss-eye-crossed", "fi-ss-eye");
-        //     }
-        // };
+        function convert_password_text() {
+            if (Password_Element.type == "password") {
+                Password_Element.type = "text";
+                eyeIcon.classList.replace("fi-ss-eye", "fi-ss-eye-crossed")
+            }
+            else {
+                Password_Element.type = "password";
+                eyeIcon.classList.replace("fi-ss-eye-crossed", "fi-ss-eye")
+            }
+        }
+        
     </script>
 </body>
 </html>

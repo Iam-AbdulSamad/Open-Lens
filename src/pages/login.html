@@ -8,20 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alice&family=Bitcount+Prop+Single:wght@100..900&display=swap"rel="stylesheet">
 </head>
-<body class="bg-bg-primary text-text-primary w-full h-screen flex items-center justify-center text-2xl">
+<body class="bg-bg-primary text-text-primary w-full h-screen flex items-center justify-center">
     <section id="content" class="w-[25%] flex flex-col items-center justify-center">
         <img src="../assets/icon.png" class="h-22 mb-6" alt="">
-        <div class="google_OAuth flex flex-col w-full mb-10 items-center">
+        <div class="google_OAuth flex flex-col w-full mb-10 items-center text-2xl">
             <p class="text-center mb-4 text-text-muted">Quick Login using your Google account </p>
             <button class="font-bitcount border-2 w-3/4 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Continue with Google</button>
         </div>
         <p class="font-bitcount mb-6 text-md text-text-muted">OR</p>
-        <form id="form" class="w-full flex flex-col items-center">
+        <form id="form" class="w-full flex flex-col items-center text-lg">
             <input id="mail" class="w-full border-b border-gray-400 py-2 mb-6 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="email" placeholder="Enter your Email">
             <div class="w-full mb-6 flex items-center">
                 <input id="password" class="w-full border-b border-gray-400 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:border-accent-primary transition" type="password" placeholder="Enter your Password">
                 <span onclick="convert_password_text()"><i id="eye" class="fi fi-ss-eye"></i></span>
             </div>
+            <p id="error_message" class="text-red-400 hidden">Invalid Credentials!</p>
             <button type="submit" class="font-bitcount border-2 mt-4 w-1/2 bg-accent-primary border-accent-hover px-4 py-2 rounded-xl hover:text-bg-primary hover:bg-btn-hover transition">Login</button>
             <p class="text-sm mt-6 text-text-muted">Don't have an account? <a class="hover:text-accent-hover" href="../pages/signup.html">Sign up</a></p>
         </form>
@@ -35,16 +36,14 @@
         const Password_Element = document.querySelector('#password')
         const Mail_Element = document.querySelector('#mail')
         const Confirmation_Message_Element = document.querySelector('#confirmation_message')
+        const error_message_element = document.querySelector('#error_message')
         const eyeIcon = document.querySelector('#eye');
         const Mail = "" 
         const Password = ""
 
         Form_Element.addEventListener('submit', (event)=>{
+            // error_message_element.classList.toggle('hidden')
             event.preventDefault();
-            if(Mail != Mail_Element.value || Password != Password_Element.value){
-                alert("Invalid Credentials!")
-                return;
-            }
             document.querySelector('#content').classList.add('blur-md')
             Confirmation_Message_Element.classList.remove('hidden')
             setTimeout(()=>{
