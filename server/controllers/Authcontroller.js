@@ -1,11 +1,11 @@
 import mongoose from "mongoose"
 import UserModel from "../Models/UserModel.js"
 import bcrypt from "bcrypt"
+import { generateAuthToken } from "../utils/JWTtoken.js";
 
 export const Register = async (req, res, next) => {
     const session = await mongoose.startSession();
     session.startTransaction();
-    console.log(req.body);
     if (!req.body) {
         res.status(200).json({
             success: false,
@@ -32,6 +32,52 @@ export const Register = async (req, res, next) => {
             data: User
         })
     } catch (error) {
+        res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message
+        })
+        session.abortTransaction();
+        session.endSession();
+        next(error);
+    }
+};
+
+export const Login = async (req, res, next) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    if (!req.body) {
+        res.status(200).json({
+            success: false,
+            meassage: "No Body Found!"
+        })
+    }
+    try {
+        const { email, password } = req.body
+        const user = await UserModel.findOne({ email });
+        if (!user) {
+            const error = new Error("User does not exist with this email");
+            error.statusCode = 400;
+            throw error;
+        }
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatch) { 
+            const error = new Error("Invalid password or email");
+            error.statusCode = 400;
+            throw error;
+        }
+        const token = generateAuthToken(user._id);
+        session.commitTransaction();
+        session.endSession();
+        res.status(201).json({
+            success: true,
+            data: user,
+            token: token
+        })
+    } catch (error) {
+        res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message
+        })
         session.abortTransaction();
         session.endSession();
         next(error);
